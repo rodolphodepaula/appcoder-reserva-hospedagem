@@ -62,7 +62,9 @@ a {
 	margin-left: 10px;
 	margin-bottom: 0;
 	letter-spacing: 1px;
-	color: #008cff;
+	color: #004aad;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+	/* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif */
 }
 
 .toggle-icon {
