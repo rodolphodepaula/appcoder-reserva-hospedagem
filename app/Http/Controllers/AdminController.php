@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function adminDashboard()
+    public function dashboard()
     {
         return view('admin.index');
     }
@@ -21,11 +22,18 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/admin/login');
     }
 
     public function login()
     {
         return view('admin.admin_login');
+    }
+
+    public function profile()
+    {
+        $profile = User::find(Auth::user()->id ?? '');
+
+        return view('admin.admin_profile', compact('profile'));
     }
 }

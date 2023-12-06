@@ -50,7 +50,7 @@ class LoginRequest extends FormRequest
 
         $user  = User::query();
         $user = app(UserService::class)->getBySearch($user, $search);
-        $user = $user->firstOrFail();
+        $user = $user->first();
 
         if (! $user || !Hash::check($this->password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
