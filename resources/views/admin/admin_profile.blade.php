@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <div class="page-content">
   <!--breadcrumb-->
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -103,7 +104,7 @@
                   <h6 class="mb-0">Foto</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="file" name="photo" id="formFile" class="form-control" />
+                  <input type="file" name="photo" id="image" class="form-control" />
                 </div>
               </div>
 
@@ -112,7 +113,9 @@
                   <h6 class="mb-0"> </h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <img src="{{
+                  <img
+                    id="showImage"
+                    src="{{
                     (! empty($profile->photo))
                       ? url('upload/admin_images'.$profile->photo)
                       : url('upload/no_image.jpg')
@@ -141,5 +144,16 @@
 </div>
 
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#image').change(function(e) {
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('#showImage').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files['0']);
+    });
+  });
 
+</script>
 @endsection
