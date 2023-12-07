@@ -74,7 +74,10 @@
                   <h6 class="mb-0">Nome</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" name="name" class="form-control" value="{{ $profile->name }}" />
+                  <input type="text" name="name" class="form-control @error('name')  is-invalid @enderror "  value="{{ $profile->name }}" />
+                  @error('name')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
               <div class="row mb-3">
@@ -82,7 +85,10 @@
                   <h6 class="mb-0">E-mail</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="email" name="email" class="form-control" value="{{ $profile->email }}" />
+                  <input type="email" name="email" class="form-control @error('email')  is-invalid @enderror" value="{{ $profile->email }}" />
+                  @error('email')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
                 </div>
               </div>
               <div class="row mb-3">
