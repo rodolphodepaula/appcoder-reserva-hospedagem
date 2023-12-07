@@ -34,11 +34,18 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-                <img src="{{ asset('backend/assets/images/avatars/avatar-2.png') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                <img src="{{
+                    (! empty($profile->photo))
+                      ? url('upload/admin_images'.$profile->photo)
+                      : url('upload/no_image.jpg')
+                    }}"
+                    alt="Admin"
+                    class="rounded-circle p-1 bg-primary"
+                    width="110"
+                  >
                 <div class="mt-3">
-                  <h4>John Doe</h4>
-                  <p class="text-secondary mb-1">Full Stack Developer</p>
-                  <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                  <h4>{{ $profile->name }}</h4>
+                  <p class="text-secondary mb-1">{{ $profile->email }}</p>
                 </div>
               </div>
               <hr class="my-4" />
@@ -60,48 +67,69 @@
             <div class="card-body">
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Full Name</h6>
+                  <h6 class="mb-0">Nome</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="John Doe" />
+                  <input type="text" name="name" class="form-control" value="{{ $profile->name }}" />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Email</h6>
+                  <h6 class="mb-0">E-mail</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="john@example.com" />
+                  <input type="email" name="email" class="form-control" value="{{ $profile->email }}" />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Phone</h6>
+                  <h6 class="mb-0">Telefone</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="(239) 816-9029" />
+                  <input type="text" name="phone" class="form-control" value="{{ $profile->phone }}" />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Mobile</h6>
+                  <h6 class="mb-0">Endereço</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="(320) 380-4539" />
+                  <input type="text" name="address" class="form-control" value="{{ $profile->address }}" />
                 </div>
               </div>
+              
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Address</h6>
+                  <h6 class="mb-0">Foto</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" class="form-control" value="Bay Area, San Francisco, CA" />
+                  <input type="file" name="photo" id="formFile" class="form-control" />
                 </div>
               </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0"> </h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <img src="{{
+                    (! empty($profile->photo))
+                      ? url('upload/admin_images'.$profile->photo)
+                      : url('upload/no_image.jpg')
+                    }}"
+                    alt="Admin"
+                    class="rounded-circle p-1 bg-primary"
+                    width="80"
+                  >
+                </div>
+              </div>
+
+
+
               <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="button" class="btn btn-primary px-4" value="Save Changes" />
+                  <input type="button" class="btn btn-primary px-4" value="Salvar" />
                 </div>
               </div>
             </div>
