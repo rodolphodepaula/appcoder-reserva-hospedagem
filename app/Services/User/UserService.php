@@ -2,8 +2,10 @@
 
 namespace App\Services\User;
 
+use App\Models\User;
 use App\Services\AbstractService;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class UserService extends AbstractService
 {
@@ -15,5 +17,27 @@ class UserService extends AbstractService
 
         return $user;
 
+    }
+
+    public function profileSave(User $user, array $params): User
+    {
+        return DB::transaction(function () use ($user, $params) {
+            $user->name = $params['name'];
+            $user->email = $params['email'];
+            $user->phone = $params['phone'];
+            $user->address = $params['address'];
+
+            if (!empty( $params['photo'] ?? '')) {
+                $file = $params['photo'];
+                @unlink(public_path('upload/admin_images/'.$user->photo));
+                $fileName = date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('upload/admin_images'), $fileName);
+                $user['photo'] = $fileName;
+            }
+
+            $user->save();
+
+            return $user;
+        });
     }
 }

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileAdminRequest;
 use App\Models\User;
+use App\Services\User\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+    public function __construct(private UserService $srvUser){}
     public function dashboard()
     {
         return view('admin.index');
@@ -37,23 +40,14 @@ class AdminController extends Controller
         return view('admin.admin_profile', compact('profile'));
     }
 
-    public function profileStore(Request $request)
+    public function profileStore(ProfileAdminRequest $request)
     {
-        $data = User::find(Auth::user()->id);
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->address = $request->address;
+        $user = User::find(Auth::user()->id);
 
-        if ($request->file('photo')) {
-            $file = $request->file('photo');
-            @unlink(public_path('upload/admin_images/'.$data->photo));
-            $fileName = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'), $fileName);
-            $data['photo'] = $fileName;
-        }
+        $params = $request->validated();
+        $params['photo'] = $request->file('photo') ?? '';
 
-        $data->save();
+        $user = $this->srvUser->profileSave($user, $params);
 
         $notification = array(
             'message' => 'Perfil atualizado com sucesso!',
