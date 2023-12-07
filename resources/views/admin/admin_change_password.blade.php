@@ -4,13 +4,13 @@
 <div class="page-content">
   <!--breadcrumb-->
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">Perfil do Usuário</div>
+    <div class="breadcrumb-title pe-3">Alterar Senha</div>
     <div class="ps-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 p-0">
           <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">Perfil do Usuário</li>
+          <li class="breadcrumb-item active" aria-current="page">Alterar Senha</li>
         </ol>
       </nav>
     </div>
@@ -71,62 +71,34 @@
             <div class="card-body">
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Nome</h6>
+                  <h6 class="mb-0">Senha Antiga</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" name="name" class="form-control" value="{{ $profile->name }}" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">E-mail</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="email" name="email" class="form-control" value="{{ $profile->email }}" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Telefone</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" name="phone" class="form-control" value="{{ $profile->phone }}" />
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Endereço</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="text" name="address" class="form-control" value="{{ $profile->address }}" />
-                </div>
-              </div>
-              
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Foto</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input type="file" name="photo" id="image" class="form-control" />
-                </div>
-              </div>
+                  <input type="password" name="old_password" class="form-control @error('old_password') is-invalid @enderror" id="old_password"/>
+                  @error('old_password')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
 
+                </div>
+              </div>
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0"> </h6>
+                  <h6 class="mb-0">Nova Senha</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <img
-                    id="showImage"
-                    src="{{
-                    (! empty($profile->photo))
-                      ? url('upload/admin_images/'.$profile->photo)
-                      : url('upload/no_image.jpg')
-                    }}"
-                    alt="Admin"
-                    class="rounded-circle p-1 bg-primary"
-                    width="80"
-                  >
+                  <input type="password" name="new_password" class="form-control @error('new_password') is-invalid @enderror" id="new_password"/>
+                  @error('new_password')
+                    <span class="text-danger">{{ $message }}</span>
+                  @enderror
+
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Confirmar Senha</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="password" name="new_password_confirmation" class="form-control" id="new_password_confirmation"/>
                 </div>
               </div>
 
@@ -147,18 +119,4 @@
     </div>
   </div>
 </div>
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#image').change(function(e) {
-      var reader = new FileReader();
-      reader.onload = function(e){
-        $('#showImage').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(e.target.files['0']);
-    });
-  });
-
-</script>
 @endsection
