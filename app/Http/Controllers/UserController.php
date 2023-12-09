@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Services\User\UserService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProfileUserRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -41,5 +43,21 @@ class UserController extends Controller
 
         return redirect()->back()->with($notification);
 
+    }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        $notification = array(
+            'message' => 'Usuário desconectado',
+            'alert-type' => 'success'
+        );
+
+        return redirect('/login')->with($notification);
     }
 }

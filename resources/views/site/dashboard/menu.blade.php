@@ -38,7 +38,7 @@
                 <a href="{{ route('dashboard') }}">Detalhes da Reserva </a>
             </li>
             <li>
-                <a href="{{ route('logout') }}">Sair </a>
+                <a href="{{ route('profile.logout') }}">Sair </a>
             </li>
           </ul>
         </div>
