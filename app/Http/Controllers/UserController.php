@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Services\User\UserService;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ProfileUserRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProfileUserRequest;
+use App\Http\Requests\ProfilePasswordRequest;
 
 class UserController extends Controller
 {
@@ -59,5 +62,34 @@ class UserController extends Controller
         );
 
         return redirect('/login')->with($notification);
+    }
+
+    public function changePassword()
+    {
+        return view('site.dashboard.change_password');
+    }
+
+    public function passwordUpdate(ProfilePasswordRequest $request)
+    {
+        if (!Hash::check($request->old_password, Auth::user()->password)) {
+            $notification = array(
+                'message' => 'A senha antiga não confere!',
+                'alert-type' => 'error'
+            );
+
+            return back()->with($notification);
+        }
+
+        User::whereId(Auth::user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        $notification = array(
+            'message' => 'Senha alterado com sucesso!',
+            'alert-type' => 'success'
+        );
+
+        return back()->with($notification);
+
     }
 }

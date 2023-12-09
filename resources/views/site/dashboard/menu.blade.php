@@ -32,7 +32,7 @@
                 <a href="{{ route('user.profile') }}">Perfil</a>
             </li>
             <li>
-                <a href="{{ route('dashboard') }}">Alterar Senha</a>
+                <a href="{{ route('profile.change.password') }}">Alterar Senha</a>
             </li>
             <li>
                 <a href="{{ route('dashboard') }}">Detalhes da Reserva </a>
