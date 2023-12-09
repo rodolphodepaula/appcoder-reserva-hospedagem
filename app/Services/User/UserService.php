@@ -26,12 +26,13 @@ class UserService extends AbstractService
             $user->email = $params['email'];
             $user->phone = $params['phone'];
             $user->address = $params['address'];
+            $path = isset($params['path']) ? $params['path'] : 'admin_images';
 
             if (!empty( $params['photo'] ?? '')) {
                 $file = $params['photo'];
-                @unlink(public_path('upload/admin_images/'.$user->photo));
+                @unlink(public_path('upload/'.$path.'/'.$user->photo));
                 $fileName = date('YmdHi').$file->getClientOriginalName();
-                $file->move(public_path('upload/admin_images'), $fileName);
+                $file->move(public_path('upload/'.$path), $fileName);
                 $user['photo'] = $fileName;
             }
 
