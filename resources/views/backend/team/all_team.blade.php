@@ -6,7 +6,7 @@
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
     <div class="ms-auto">
       <div class="btn-group">
-        <button type="button" class="btn btn-outline-primary px-5 radius-30">Adicionar</button>
+        <a href="{{ route('add.team') }}" class="btn btn-outline-primary px-5 radius-30"> Adicionar</a>
       </div>
     </div>
   </div>
@@ -19,23 +19,28 @@
         <table id="example" class="table table-striped table-bordered" style="width:100%">
           <thead>
             <tr>
+              <th>Sl</th>
+              <th>Image</th>
               <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+              <th>Postion</th>
+              <th>Facebook</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
+            @foreach ($teams as $key => $item)
             <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
+              <td>{{ $key + 1}}</td>
+              <td><img src="{{ asset($item->image) }}" alt="" style="width: 70px; height:40px"></td>
+              <td>{{ $item->name }}</td>
+              <td>{{ $item->postion }}</td>
+              <td>{{ $item->facebook }}</td>
+              <td>
+                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
+                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Delete</a>
+              </td>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

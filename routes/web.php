@@ -56,6 +56,9 @@ Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::controller(TeamController::class)->group(function () {
         Route::get('/all/team', 'allTeam')->name('all.team');
+        Route::get('/add/team', 'addTeam')->name('add.team');
+        Route::post('/team/store', 'store')->name('team.store');
+        Route::post('/team/update', 'update')->name('team.edit');
     });
 });
 //End Admin Group Middleware
