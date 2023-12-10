@@ -19,12 +19,12 @@
         <table id="example" class="table table-striped table-bordered" style="width:100%">
           <thead>
             <tr>
-              <th>Sl</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Postion</th>
+              <th>Código</th>
+              <th>Imagem</th>
+              <th>Nome</th>
+              <th>Posição</th>
               <th>Facebook</th>
-              <th>Action</th>
+              <th>Ação</th>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +36,8 @@
               <td>{{ $item->postion }}</td>
               <td>{{ $item->facebook }}</td>
               <td>
-                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Edit</a>
-                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Delete</a>
+                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Editar</a>
+                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-danger px-3 radius-30"> Excluir</a>
               </td>
             </tr>
             @endforeach

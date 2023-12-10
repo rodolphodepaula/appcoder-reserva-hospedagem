@@ -4,13 +4,13 @@
 <div class="page-content">
   <!--breadcrumb-->
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">Adicionar Equipe</div>
+    <div class="breadcrumb-title pe-3">Editar Equipe</div>
     <div class="ps-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 p-0">
           <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">Adicionar Equipe</li>
+          <li class="breadcrumb-item active" aria-current="page">Editar Equipe</li>
         </ol>
       </nav>
     </div>
@@ -34,8 +34,10 @@
 
         <div class="col-lg-8">
           <div class="card">
-            <form action="{{ route('team.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('team.update') }}" method="post" enctype="multipart/form-data">
               @csrf
+              @method('put')
+              <input type="hidden" name="id" value="{{ $team->id }}">
 
             <div class="card-body">
               <div class="row mb-3">
@@ -43,7 +45,7 @@
                   <h6 class="mb-0">Nome</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" name="name" class="form-control @error('name')  is-invalid @enderror " />
+                  <input type="text" name="name" class="form-control @error('name')  is-invalid @enderror " value="{{ $team->name }}" />
                   @error('name')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -54,7 +56,7 @@
                   <h6 class="mb-0">Postion</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" name="postion" class="form-control @error('postion') is-invalid @enderror" />
+                  <input type="text" name="postion" class="form-control @error('postion') is-invalid @enderror" value="{{ $team->postion }}" />
                   @error('postion')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -65,7 +67,7 @@
                   <h6 class="mb-0">Facebook</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input type="text" name="facebook" class="form-control @error('facebook') is-invalid @enderror" />
+                  <input type="text" name="facebook" class="form-control @error('facebook') is-invalid @enderror" value="{{ $team->facebook }}" />
                   @error('facebook')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -90,7 +92,7 @@
                 <div class="col-sm-9 text-secondary">
                   <img
                     id="showImage"
-                    src="{{ url('upload/no_image.jpg') }}"
+                    src="{{ asset($team->image) }}"
                     alt="Admin"
                     class="rounded p-1 bg-primary"
                     width="80"
