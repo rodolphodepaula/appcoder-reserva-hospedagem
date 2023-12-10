@@ -60,6 +60,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/team/store', 'store')->name('team.store');
         Route::get('/team/edit/{id}', 'edit')->name('team.edit');
         Route::put('/team/update', 'update')->name('team.update');
+        Route::get('/team/delete/{id}', 'delete')->name('team.delete');
     });
 });
 //End Admin Group Middleware

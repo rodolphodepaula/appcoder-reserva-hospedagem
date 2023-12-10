@@ -62,4 +62,20 @@ class TeamController extends Controller
         return redirect()->route('all.team')->with($notification);
 
     }
+
+    public function delete(int $id)
+    {
+        $team = Team::findOrFail($id);
+        unlink($team->image);
+        $name = $team->name;
+
+        $team->delete();
+
+        $notification = array(
+            'message' => 'Equipe '.$name.' excluída com sucesso!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

@@ -37,7 +37,7 @@
               <td>{{ $item->facebook }}</td>
               <td>
                 <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Editar</a>
-                <a href="{{ route('team.edit', $item->id) }}" class="btn btn-danger px-3 radius-30"> Excluir</a>
+                <a href="{{ route('team.delete', $item->id) }}" class="btn btn-danger px-3 radius-30" id="delete"> Excluir</a>
               </td>
             </tr>
             @endforeach
