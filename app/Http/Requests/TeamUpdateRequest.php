@@ -26,7 +26,7 @@ class TeamUpdateRequest extends FormRequest
             'name' => 'required|string',
             'postion' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'facebook' => 'nullable|string',
+            'facebook' => 'required|string',
         ];
     }
 
