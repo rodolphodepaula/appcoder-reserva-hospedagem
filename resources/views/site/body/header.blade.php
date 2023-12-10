@@ -25,14 +25,26 @@
                           <i class='bx bx-phone-call'></i>
                           <a href="tel:+1-(123)-456-7890">+1 (123) 456 7890</a>
                       </li>
+
+                      @auth
                       <li>
-                          <i class='bx bx-user-pin'></i>
-                          <a href="{{ route('login') }}">Login</a>
+                        <i class='bx bx-user-pin'></i>
+                        <a href="{{ route('dashboard') }}">Dashboard</a>
                       </li>
                       <li>
-                          <i class='bx bxs-user-rectangle'></i>
-                          <a href="{{ route('register') }}">Cadastre-se</a>
+                        <i class='bx bxs-user-rectangle'></i>
+                        <a href="{{ route('profile.logout') }}">Sair</a>
                       </li>
+                      @else
+                      <li>
+                            <i class='bx bx-user-pin'></i>
+                            <a href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li>
+                            <i class='bx bxs-user-rectangle'></i>
+                            <a href="{{ route('register') }}">Cadastre-se</a>
+                        </li>
+                      @endauth
                   </ul>
               </div>
           </div>
