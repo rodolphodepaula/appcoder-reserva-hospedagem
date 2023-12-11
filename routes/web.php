@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\BookAreaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -64,3 +65,11 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 });
 //End Admin Group Middleware
+
+//Book Area Group Middleware
+Route::middleware(['auth', 'roles:admin'])->group(function () {
+    Route::controller(BookAreaController::class)->group(function () {
+        Route::get('/book/area', 'bookArea')->name('book.area');
+    });
+});
+//End Book Area Group Middleware
