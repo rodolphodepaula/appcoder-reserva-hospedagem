@@ -22,12 +22,12 @@
       <a href="javascript:;" class="has-arrow">
         <div class="parent-icon"><i class="bx bx-category"></i>
         </div>
-        <div class="menu-title">Manage Teams</div>
+        <div class="menu-title">Equipes</div>
       </a>
       <ul>
-        <li> <a href="{{ route('all.team') }}"><i class='bx bx-radio-circle'></i>All Team</a>
+        <li> <a href="{{ route('all.team') }}"><i class='bx bx-radio-circle'></i>Lista de Equipe</a>
         </li>
-        <li> <a href="{{ route('add.team') }}"><i class='bx bx-radio-circle'></i>Add Team</a>
+        <li> <a href="{{ route('add.team') }}"><i class='bx bx-radio-circle'></i>Adicionar Equipe</a>
         </li>
       </ul>
     </li>
@@ -35,10 +35,21 @@
       <a href="javascript:;" class="has-arrow">
         <div class="parent-icon"><i class="bx bx-category"></i>
         </div>
-        <div class="menu-title">Manage BookArea</div>
+        <div class="menu-title">Em Destaque</div>
       </a>
       <ul>
-        <li> <a href="{{ route('book.area') }}"><i class='bx bx-radio-circle'></i>BookArea</a>
+        <li> <a href="{{ route('book.area') }}"><i class='bx bx-radio-circle'></i>Área</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="javascript:;" class="has-arrow">
+        <div class="parent-icon"><i class="bx bx-category"></i>
+        </div>
+        <div class="menu-title">Quartos</div>
+      </a>
+      <ul>
+        <li> <a href="{{ route('room.type') }}"><i class='bx bx-radio-circle'></i>Tipo de quarto</a>
         </li>
       </ul>
     </li>

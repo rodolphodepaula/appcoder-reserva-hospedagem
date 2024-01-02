@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BookAreaController;
+use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Backend\TeamController;
-use App\Http\Controllers\BookAreaController;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -74,3 +76,11 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     });
 });
 //End Book Area Group Middleware
+//Room Type Group Middleware
+Route::middleware(['auth', 'roles:admin'])->group(function () {
+    Route::controller(RoomTypeController::class)->group(function () {
+        Route::get('/room/type/list', 'index')->name('room.type');
+        //Route::post('/book/area', 'update')->name('book.area.update');
+    });
+});
+//End Room Type Group Middleware

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\BookArea;
 use App\Http\Requests\BookAreaUpdateRequest;
 use App\Services\BookArea\BookAreaService;
