@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookArea;
+use App\Http\Requests\BookAreaUpdateRequest;
 use App\Services\BookArea\BookAreaService;
-use Illuminate\Http\Request;
 
 class BookAreaController extends Controller
 {
@@ -16,5 +16,21 @@ class BookAreaController extends Controller
         $book = BookArea::find(1);
 
         return view('backend.bookarea.book_area', compact('book'));
+    }
+
+    public function update(BookAreaUpdateRequest $request)
+    {
+        $params = $request->validated();
+        $book = BookArea::find($params['id'] ?? '');
+        $params['image'] = $request->file('image') ?? '';
+        $book = $this->srvBook->update($book, $params);
+
+        $notification = array(
+            'message' => 'Equipe '.$book->title.' cadastrado com sucesso!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
     }
 }

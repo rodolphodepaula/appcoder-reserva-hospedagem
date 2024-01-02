@@ -70,6 +70,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::controller(BookAreaController::class)->group(function () {
         Route::get('/book/area', 'bookArea')->name('book.area');
+        Route::post('/book/area', 'update')->name('book.area.update');
     });
 });
 //End Book Area Group Middleware
