@@ -79,8 +79,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 //Room Type Group Middleware
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::controller(RoomTypeController::class)->group(function () {
-        Route::get('/room/type/list', 'index')->name('room.type');
-        //Route::post('/book/area', 'update')->name('book.area.update');
+        Route::get('/room/type/index', 'index')->name('room.type.index');
+        Route::get('/room/type/create', 'create')->name('room.type.create');
+        Route::post('/room/type/store', 'store')->name('room.type.store');
     });
 });
 //End Room Type Group Middleware

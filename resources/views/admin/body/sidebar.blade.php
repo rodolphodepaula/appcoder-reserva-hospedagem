@@ -49,7 +49,7 @@
         <div class="menu-title">Quartos</div>
       </a>
       <ul>
-        <li> <a href="{{ route('room.type') }}"><i class='bx bx-radio-circle'></i>Tipo de quarto</a>
+        <li> <a href="{{ route('room.type.index') }}"><i class='bx bx-radio-circle'></i>Tipo de quarto</a>
         </li>
       </ul>
     </li>

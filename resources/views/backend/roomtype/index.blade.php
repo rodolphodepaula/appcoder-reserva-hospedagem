@@ -6,7 +6,7 @@
   <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
     <div class="ms-auto">
       <div class="btn-group">
-        <a href="{{ route('add.team') }}" class="btn btn-outline-primary px-5 radius-30"> Adicionar</a>
+        <a href="{{ route('room.type.create') }}" class="btn btn-outline-primary px-5 radius-30"> Adicionar</a>
       </div>
     </div>
   </div>
@@ -20,7 +20,6 @@
           <thead>
             <tr>
               <th>Código</th>
-              <th>Imagem</th>
               <th>Nome</th>
               <th>Ação</th>
             </tr>
@@ -29,7 +28,6 @@
             @foreach ($roomType as $key => $item)
             <tr>
               <td>{{ $key + 1}}</td>
-              <td></td>
               <td>{{ $item->name }}</td>
               <td>
                 <a href="{{ route('team.edit', $item->id) }}" class="btn btn-warning px-3 radius-30"> Editar</a>
