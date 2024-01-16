@@ -36,7 +36,7 @@
           <div class="card">
             <form action="{{ route('book.area.update') }}" method="post" enctype="multipart/form-data" id="myForm">
               @csrf
-              <input type="hidden" name="id" value="{{ $book->id }}">
+              <input type="hidden" name="id" value="{{ $book->id ?? '' }}">
 
             <div class="card-body">
               <div class="row mb-3">
@@ -44,7 +44,7 @@
                   <h6 class="mb-0">Título</h6>
                 </div>
                 <div class="form-group col-sm-9 text-secondary">
-                  <input type="text" name="title" class="form-control @error('title')  is-invalid @enderror " value="{{ $book->title }}" />
+                  <input type="text" name="title" class="form-control @error('title')  is-invalid @enderror " value="{{ $book->title ?? '' }}" />
                   @error('title')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -55,7 +55,7 @@
                   <h6 class="mb-0">Sub-Título</h6>
                 </div>
                 <div class="form-group col-sm-9 text-secondary">
-                  <input type="text" name="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ $book->subtitle }}" />
+                  <input type="text" name="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ $book->subtitle ?? '' }}" />
                   @error('subtitle')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -66,7 +66,7 @@
                   <h6 class="mb-0">Descrição</h6>
                 </div>
                 <div class="form-group col-sm-9 text-secondary">
-                  <textarea name="description" id="description" rows="3" class="form-control" placeholder="Descrição" >{{ $book->description }}</textarea>
+                  <textarea name="description" id="description" rows="3" class="form-control" placeholder="Descrição" >{{ $book->description ?? '' }}</textarea>
                   @error('description')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -77,7 +77,7 @@
                   <h6 class="mb-0">Link</h6>
                 </div>
                 <div class="form-group col-sm-9 text-secondary">
-                  <input type="text" name="link" class="form-control @error('link') is-invalid @enderror"  value="{{ $book->link }}" />
+                  <input type="text" name="link" class="form-control @error('link') is-invalid @enderror"  value="{{ $book->link ?? '' }}" />
                   @error('link')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -99,6 +99,7 @@
                 <div class="col-sm-3">
                   <h6 class="mb-0"> </h6>
                 </div>
+                @if($book)
                 <div class="col-sm-9 text-secondary">
                   <img
                     id="showImage"
@@ -108,6 +109,7 @@
                     width="80"
                   >
                 </div>
+                @endif
               </div>
               <div class="row">
                 <div class="col-sm-3"></div>
